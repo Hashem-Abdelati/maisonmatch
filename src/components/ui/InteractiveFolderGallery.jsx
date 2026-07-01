@@ -30,23 +30,31 @@ export function InteractiveFolderGallery({ partners = defaultPartners, folderNam
       <div className="partner-files" aria-live="polite">
         {partners.map((partner, index) => {
           const offset = index - Math.floor(partners.length / 2)
+          const mobileOpenPositions = [
+            { x: -34, y: -58, rotate: -5, scale: .98 },
+            { x: 42, y: -96, rotate: 4, scale: .88 },
+            { x: -10, y: -124, rotate: -1, scale: .86 },
+            { x: 58, y: -136, rotate: 5, scale: .84 },
+            { x: 78, y: -78, rotate: 7, scale: .84 },
+          ]
           const closed = {
             x: hovered ? index * (isMobile ? 11 : 22) : index * 5,
             y: hovered ? -40 - index * 4 : index * -5,
             rotate: hovered ? index * 2.4 : index * .8,
             scale: 1 - index * .018,
           }
-          const opened = isMobile ? {
-            x: offset * 38,
-            y: -120 + Math.abs(offset) * 18,
-            rotate: offset * 3,
-            scale: .88,
-          } : {
+          const opened = isMobile ? (mobileOpenPositions[index] || {
+            x: offset * 28,
+            y: -140 + Math.abs(offset) * 14,
+            rotate: offset * 2,
+            scale: .84,
+          }) : {
             x: offset * 120,
             y: -152 + Math.abs(offset) * 12,
             rotate: offset * 1.5,
             scale: 1.08,
           }
+          const openZIndex = isMobile ? 100 - index : 30 + index
           return <motion.article
             key={partner.id}
             className={`partner-file ${partner.logo ? 'real-partner' : 'placeholder-partner'}`}
@@ -55,7 +63,7 @@ export function InteractiveFolderGallery({ partners = defaultPartners, folderNam
             dragElastic={.18}
             dragSnapToOrigin
             onDragEnd={(_, info) => { if (info.offset.y > 85) setIsOpen(false) }}
-            animate={isOpen ? { ...opened, zIndex: 30 + index } : { ...closed, zIndex: 100 - index }}
+            animate={isOpen ? { ...opened, zIndex: openZIndex } : { ...closed, zIndex: 100 - index }}
             whileHover={isOpen && !reduceMotion ? { y: opened.y - 12, zIndex: 100 } : undefined}
             transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 320, damping: 30 }}
           >

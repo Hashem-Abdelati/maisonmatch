@@ -106,3 +106,28 @@ body,.header{background:#fff}.header{border-color:#d5d5d2}.footer,.dark-section{
 .final-look-card{min-width:0}.final-look-strip{height:auto!important;aspect-ratio:auto!important;padding:14px!important}.sequence-frame{width:min(100%,300px)!important;height:auto!important;aspect-ratio:1/1.92!important;background-size:400% 100%!important;background-color:#fff!important;background-repeat:no-repeat!important;background-position-y:0!important}.solution-look-body{grid-template-columns:minmax(150px,.68fr) minmax(64px,.24fr) minmax(260px,1.08fr)!important}.demo-error{border:1px solid #8f6266;background:#fff;color:#52282d;padding:12px 14px;margin:0 0 16px;font-size:11px;line-height:1.55;text-transform:none;letter-spacing:0}.form-wrap .button:disabled{opacity:.58;cursor:wait}
 @media(max-width:900px){.solution-look-body{grid-template-columns:1fr!important}.sequence-frame{width:min(78%,290px)!important}}
 @media(max-width:600px){.sequence-frame{width:min(82%,250px)!important}.final-look-strip{padding:10px!important}}
+
+/* Mobile usability pass: visible partner lead card + no hidden step rail */
+@media(max-width:600px){
+  .is-open .folder-stage{min-height:520px}
+  .is-open .partner-files{bottom:142px}
+  .is-open .partner-file.real-partner{box-shadow:0 22px 54px rgba(0,0,0,.18)}
+  .is-open .partner-file.real-partner .partner-logo-area img{height:132px}
+  .folder-close{top:8px;right:50%;transform:translateX(50%);white-space:nowrap;background:#fff}
+  .folder-hint{bottom:8px;padding:0 28px;line-height:1.6}
+
+  .lab-layout{display:block}
+  .lab-nav{display:grid!important;grid-template-columns:1fr 1fr;grid-template-rows:repeat(2,auto);overflow:visible!important;border-bottom:1px solid #cfcfcb;background:#fff}
+  .lab-nav>button{min-width:0!important;min-height:112px!important;padding:14px 12px!important;grid-template-columns:30px 1fr!important;gap:10px!important;border-bottom:1px solid #d8d8d4}
+  .lab-nav>button:nth-child(odd){border-right:1px solid #d8d8d4}
+  .lab-nav>button:nth-child(3),.lab-nav>button:nth-child(4){border-bottom:0}
+  .lab-nav>button>svg{display:none}
+  .lab-nav>button>span{width:30px;height:30px}
+  .lab-nav small{font-size:7px;margin-bottom:6px}
+  .lab-nav b{font-size:24px;line-height:.96}
+  .lab-nav p{display:none}
+  .lab-nav>button.active{background:#171716;color:#fff}
+  .lab-header{height:auto;min-height:72px;gap:10px;padding:12px;align-items:center}
+  .lab-header>button{padding:13px 14px}
+  .lab-viewport{min-height:600px}
+}
